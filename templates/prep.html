@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="refresh" content="5">          
+
+        <title>
+            Prep
+        </title>
+    </head>
+    <body>
+        <h1>Select order to mark as Preparing</h1>
+
+        <div class="row">
+            <div class="column"  style="background-color:rgb(115, 231, 111);">
+                <h2>Mark as Preparing</h2>
+                {% for order in pend %}
+                <h3><a href="{{ url_for('update_status', order_ref=order.order_ref,
+                    status='Preparing', return_to='prep' )}}">{{order.order_ref}}</a></h3>
+                {% endfor %}
+        </div>
+    </body>
+</html>

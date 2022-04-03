@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="refresh" content="5">          
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            
+            .column {
+                float: left;
+                width: 50%;
+                padding: 10px;
+              height: 300px; /* Should be removed. Only for demonstration */
+            }
+            
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        </style>
+
+        <title>
+            Ready
+        </title>
+    </head>
+    <body>
+        <h1>Select order to mark as Ready</h1>
+
+        <div class="row">
+            <div class="column"  style="background-color:rgb(115, 231, 111);">
+                <h2>Preparing - Click to mark as Ready</h2>
+                {% for order in prep %}
+                    <h3><a href="{{ url_for('update_status', order_ref=order.order_ref, 
+                        status='Ready', return_to='ready' )}}">{{order.order_ref}}</a></h3>
+                {% endfor %}
+            </div>
+            <div class="column" style="background-color:rgb(149, 75, 75);">
+                <h2>Ready - Click to remove order</h2>
+                {% for order in ready %}
+                    <h3><a href="{{ url_for('delete_order', order_ref=order.order_ref, 
+                        return_to='ready' )}}">{{order.order_ref}}</a></h3>
+                {% endfor %}
+            </div>
+
+    </body>
+</html>
